@@ -1,0 +1,21 @@
+name: Discord Notification
+
+on:
+  issues:
+    types: [opened, reopened, closed, edited]
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get issue body
+        id: get_issue_body
+        uses: peter-evans/get-issue-body@v1
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Send Discord Notification
+        uses: distributhor/action-discord@main
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          MESSAGE: 'Une tâche a été ajoutée ou modifiée : ${{ github.event.issue.title }}.\n\n ${{ steps.get_issue_body.outputs.body }}'
