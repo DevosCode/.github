@@ -1,6 +1,6 @@
 # Devos Code
 
-![Devos Code's banner](./banner.png)
+![Devos Code's banner](images/banner.png)
 
 Devos Code est un serveur discord d'entraide et d'apprentissage en programmation.
 
